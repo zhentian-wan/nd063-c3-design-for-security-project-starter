@@ -1,3 +1,30 @@
 Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
 
 Bonus - provide recommendations on how to remediate the vulnerabilities.
+
+## 1 
+
+![Brute forced](e2t2-1.png)
+
+From the screenshot we can see that because we allow SSH connection, it is vulnerable to Brute forced attack.
+What we can do is:
+    - Using Bastion host in front. So that the web server is not SSH accessable by public.
+    - Disable password authentication for the instance so no ssh session is allowed using a password.
+
+
+## 2
+
+![Security Group](e2t2-2.png)
+
+Because EC2 is in public subnet, which is public accessible.
+What we can do is:
+    - Put EC2 into private subnet.
+    - Modify EC2 SG only allow ALB's SG
+    - Not assign public IP address
+
+## 3
+
+S3 buckets should have server-side encyprtion enabled by default.
+
+
+

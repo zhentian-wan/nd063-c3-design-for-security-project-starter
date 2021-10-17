@@ -1,3 +1,24 @@
 # Describe GuardDuty findings that were detected related to the brute force attack
 
 # Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+
+[How do I use GuardDuty to identify SSH brute force attacks on Linux instances?](https://aws.amazon.com/premiumsupport/knowledge-center/identify-attacks-with-guardduty/)
+
+
+From the Actor section
+
+![Actor](actor.png) 
+
+Can know the attacker IP address: `10.192.11.230`.
+
+"To detect unauthorized and unexpected activity in your AWS environment, GuardDuty analyzes and processes 
+data from AWS CloudTrail event logs, VPC Flow Logs, and DNS logs to detect anomalies involving the following AWS 
+resource types: IAM Access Keys, EC2 Instances, and S3 Bucket", ref: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_data-sources.html#guardduty_vpc
+
+Hence guardduty is an AWS service that basically uses or analyze data from other AWS logging service to interpret the logs and present
+any vulnerabilities in a more clear or readable way to users. If we further read the documentation, VPC flow logs is described as
+
+"VPC Flow Logs capture information about the IP traffic going to and from Amazon EC2 network interfaces in your VPC"
+
+Hence any SSH access such as the brute force must be detected and analyze by AWS GuardDuty from this data source.
+

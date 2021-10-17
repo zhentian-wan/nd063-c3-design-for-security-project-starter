@@ -1,5 +1,48 @@
 Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
 
 # Poor practice 1
+Found: Web Service Instance should be put inside private subnet instead of public subnet.
+
+Reason & Solution: Becasue ALB has SSL termination, it should set public subnet; then connect to EC2
+instance in private subnet, increase security to protect instances.
 
 # Poor practice 2
+Found: EC2 talk to S3 via public internet is bad choice. 
+
+Reason & Solution: We could use VPC endpoint gateway to access S3 to increase the secuirty. No need to via public internet.
+
+# Poor practice 3
+
+Found: The secret precipe S3 bucket is not enable serve-side encyprtion by default.
+
+Reason: We need to store data in a secret way (encyprtion) to prevent un-authorizated access.
+
+# Poor practice 4
+
+Found: Not least-privileged permissions which provide to EC2 instance, current one is
+
+```yml
+        
+    Statement:
+        - Effect: Allow
+          Action: 's3:*'
+          Resource: '*'
+```
+Which means application can not only read update & delete recipe in S3 bucket.
+
+Also `Resouces: '*'` means, app user can not only read free recipe but also secret recipe from  secret bucket.
+
+# Poor practice 5
+
+Found: EC2 Security Group
+
+`CidrIp: 0.0.0.0/0` which allow connection from everywhere. Should only allow SG of ALB.
+
+
+# Poor practice 6
+
+Found: In `c3/app.yml`, EC2 instance is using API Keys which is bad.
+
+Solution: Using using IAM Role instead of API Key to ensure least-privileged permissions assigned to the instance.
+
+
