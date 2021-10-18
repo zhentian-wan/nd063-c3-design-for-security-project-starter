@@ -1,8 +1,17 @@
 
 # What additional architectural change can be made to reduce the internet facing attack surface of the web application instance.
+1. Using WAF on ALB. 
+2. Remove EIP from EC2.
+3. Pub EC2 into private subnet
+4. Using HTTPS to connect ALB
+5. EC2 only allow ALB SG to connect
+6. Using NAT gateway for EC2 to get access public internet.
 
 # Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+No. VPC private endpoints can connect to S3 within Amazon network. But won't prevent unauthorized access to the secrets bucket.
 
 # Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+No. that only apply to new object in S3.
 
 # What would happen if the original cloud formation templates are applied to this environment.
+Manully changes will lost.

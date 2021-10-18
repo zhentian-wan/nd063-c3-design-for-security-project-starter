@@ -1,13 +1,22 @@
 # Identify tools that will allow you to do the following:
 
+# Identify tools that will allow you to do the following:
+
 ## Scan infrastructure as code templates
+Checkov - https://www.checkov.io/
+Regula - https://github.com/fugue/regula
 
 ### Example vulnerability
+Ensure no security groups allow ingress from 0.0.0.0:0 to port 22 (Checkov rule CKV_AWS_24)
 
-##Scan AMI’s or containers for OS vulnerabilities
-
-### Example vulnerability
-
-##Scan an AWS environment for cloud configuration vulnerabilities
+## Scan AMI’s or containers for OS vulnerabilities
+Dagda - https://github.com/eliasgranderubio/dagda/
 
 ### Example vulnerability
+https://nvd.nist.gov/vuln/detail/CVE-2017-18017 - a critical linux kernel vulnerability from the CVE / NIST database
+
+## Scan an AWS environment for cloud configuration vulnerabilities
+Prowler - https://github.com/toniblyx/prowler
+
+### Example vulnerability
+Ensure multi-factor authentication (MFA) is enabled for all IAM users that have a console password
